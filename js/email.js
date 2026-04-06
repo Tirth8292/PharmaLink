@@ -28,6 +28,16 @@ function initEmailJs() {
   initialized = true;
 }
 
+function getRecipientEmail(user) {
+  return String(
+    user?.email ||
+    user?.to_email ||
+    user?.user_email ||
+    user?.recipient_email ||
+    ''
+  ).trim();
+}
+
 function welcomeText(name) {
   return `Hey ${name},
 
@@ -113,21 +123,32 @@ export async function sendAppointmentEmail(user, doctor, appointmentDate) {
   });
 }
 
-export async function sendOrderEmail(user, orderTotal, itemCount) {
+export async function sendOrderEmail(user, orderTotal, itemCount, deliveryAddress = '') {
   if (!hasEmailJsConfig()) {
     return { skipped: true };
+  }
+
+  const recipientEmail = getRecipientEmail(user);
+  if (!recipientEmail) {
+    throw new Error('Order confirmation email could not be sent because the user email address is missing.');
   }
 
   return sendTemplateEmail({
     from_name: 'PharmaLink',
     reply_to: 'support@pharmalink.local',
     to_name: user.name,
-    to_email: user.email,
+    to_email: recipientEmail,
+    email: recipientEmail,
+    user_email: recipientEmail,
+    recipient_email: recipientEmail,
+    customer_email: recipientEmail,
     user_name: user.name,
-    user_email: user.email,
+    customer_name: user.name,
     order_total: Number(orderTotal).toFixed(2),
     item_count: String(itemCount),
+    delivery_address: deliveryAddress || 'Address to be confirmed',
+    order_address: deliveryAddress || 'Address to be confirmed',
     subject: 'Your PharmaLink order is confirmed',
-    message: `Your order for ${itemCount} item(s) totaling INR ${Number(orderTotal).toFixed(2)} has been placed successfully.`
+    message: `Your order for ${itemCount} item(s) totaling INR ${Number(orderTotal).toFixed(2)} has been placed successfully.${deliveryAddress ? ` Delivery address: ${deliveryAddress}` : ''}`
   });
 }

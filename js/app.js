@@ -832,8 +832,8 @@ function renderCartPage() {
         <form id="checkout-form" class="page-card p-6">
           <p class="text-sm text-slate-500">Checkout summary</p>
           <h3 class="mt-2 text-3xl font-semibold">INR ${total.toFixed(2)}</h3>
-          <label class="mt-4 block text-sm font-medium text-slate-700">Delivery address</label>
-          <textarea id="delivery-address" name="address" class="mt-2 min-h-28 w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm" placeholder="Enter house, street, city, and landmark">${escapeHtml(state.checkoutAddress)}</textarea>
+          <label class="mt-4 block text-sm font-medium text-slate-300">Delivery address</label>
+          <textarea id="delivery-address" name="address" class="checkout-address-field mt-2 min-h-28 w-full rounded-2xl border px-4 py-3 text-sm" placeholder="Enter house, street, city, and landmark">${escapeHtml(state.checkoutAddress)}</textarea>
           <button id="place-order-btn" type="submit" class="btn-primary mt-4 w-full justify-center" ${state.cart.length ? '' : 'disabled'}>Place order</button>
         </form>
         <article class="page-card p-6">
@@ -899,7 +899,7 @@ function bindCartActions(scope) {
       state.checkoutAddress = liveAddress;
       const order = await placeOrder(state.user.id, state.cart, { address });
       try {
-        await sendOrderEmail(state.user, Number(order.total), state.cart.length);
+        await sendOrderEmail(state.user, Number(order.total), state.cart.length, address);
       } catch (error) {
         console.warn('Order email failed, but order was placed successfully:', error);
       }
@@ -962,7 +962,7 @@ function renderOrdersPage() {
         const updated = await updateOrderStatus(Number(button.dataset.orderId), button.dataset.orderStatus);
         state.orders = state.orders.map((order) => order.id === updated.id ? updated : order);
         if (updated.delivery_status === 'Shipped') {
-          await sendOrderEmail(state.user, Number(updated.total || 0), 1);
+          await sendOrderEmail(state.user, Number(updated.total || 0), 1, updated.address || '');
         }
         renderOrdersPage();
       });
@@ -1380,4 +1380,3 @@ function resolvePath(target) {
 function trimLeadingSlash(value) {
   return String(value || '').replace(/^\/+/, '');
 }
-
