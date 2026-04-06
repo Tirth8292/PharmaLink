@@ -1,0 +1,52 @@
+html { scroll-behavior: smooth; }
+body { font-family: 'Outfit', sans-serif; }
+.hero-mesh { background: radial-gradient(circle at top left, rgba(45, 212, 191, 0.28), transparent 35%), radial-gradient(circle at right center, rgba(56, 189, 248, 0.24), transparent 32%), radial-gradient(circle at bottom center, rgba(59, 130, 246, 0.18), transparent 30%), linear-gradient(135deg, #020617 0%, #0f172a 40%, #111827 100%); }
+.form-input { width: 100%; border-radius: 1rem; border: 1px solid rgba(255, 255, 255, 0.12); background: rgba(15, 23, 42, 0.65); padding: 0.95rem 1rem; color: #fff; outline: none; transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease; }
+.form-input::placeholder { color: #94a3b8; }
+.form-input:focus { border-color: #2dd4bf; background: rgba(15, 23, 42, 0.88); transform: translateY(-1px); }
+.btn-primary,.btn-secondary,.btn-danger { display: inline-flex; align-items: center; gap: 0.65rem; border-radius: 1rem; padding: 0.9rem 1.2rem; font-size: 0.95rem; font-weight: 600; transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease; }
+.btn-primary { background: linear-gradient(135deg, #14b8a6, #38bdf8); color: #fff; box-shadow: 0 18px 35px rgba(20, 184, 166, 0.2); }
+.btn-primary:hover,.btn-secondary:hover,.btn-danger:hover { transform: translateY(-1px); }
+.btn-primary:disabled,.btn-secondary:disabled,.btn-danger:disabled { cursor: not-allowed; opacity: 0.55; transform: none; box-shadow: none; }
+.btn-secondary { border: 1px solid #cbd5e1; background: #fff; color: #0f172a; }
+.btn-danger { border: 1px solid #fecaca; background: #fff1f2; color: #be123c; }
+.auth-tab { color: #cbd5e1; transition: background 0.25s ease, color 0.25s ease; }
+.auth-tab.active { background: linear-gradient(135deg, rgba(20, 184, 166, 0.18), rgba(56, 189, 248, 0.18)); color: #fff; }
+.glass-card { border: 1px solid rgba(148, 163, 184, 0.16); background: rgba(255, 255, 255, 0.84); box-shadow: 0 20px 45px rgba(15, 23, 42, 0.07); backdrop-filter: blur(24px); }
+.page-card { border-radius: 1.75rem; border: 1px solid #e2e8f0; background: rgba(255, 255, 255, 0.92); box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06); }
+.doctor-avatar { display: flex; height: 4.5rem; width: 4.5rem; flex-shrink: 0; align-items: center; justify-content: center; border-radius: 999px; background: linear-gradient(135deg, #dbeafe, #c7d2fe); color: #1d4ed8; font-size: 1.2rem; font-weight: 700; letter-spacing: 0.08em; }
+.doctor-slot-pill { display: inline-flex; align-items: center; border-radius: 999px; background: #eff6ff; color: #1d4ed8; padding: 0.65rem 0.9rem; font-size: 0.78rem; font-weight: 600; }
+.sidebar-brand-title { color: #0f172a; }
+.doctor-filter-control { background: #ffffff; color: #0f172a; }
+.doctor-filter-control::placeholder { color: #64748b; }
+.doctor-filter-control:focus { outline: none; border-color: #14b8a6; box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.12); }
+.doctor-filter-control option { background: #ffffff; color: #0f172a; }
+.booking-modal-overlay { position: fixed; inset: 0; z-index: 70; display: flex; align-items: center; justify-content: center; background: rgba(15, 23, 42, 0.4); padding: 1rem; backdrop-filter: blur(4px); }
+.booking-modal-card { position: relative; width: min(100%, 30rem); border-radius: 2rem; background: #fff; padding: 2rem; box-shadow: 0 30px 80px rgba(15, 23, 42, 0.25); }
+.booking-modal-close { position: absolute; right: 1.25rem; top: 1rem; border: none; background: transparent; color: #94a3b8; font-size: 2rem; line-height: 1; cursor: pointer; }
+.booking-modal-input { width: 100%; border-radius: 1rem; border: 1px solid #cbd5e1; background: #fff; padding: 0.95rem 1rem; color: #0f172a; outline: none; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
+.booking-modal-input:focus { border-color: #14b8a6; box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.12); }
+.fade-in-up { animation: fadeInUp 0.5s ease forwards; }
+.pulse-soft { animation: pulseSoft 2.6s ease-in-out infinite; }
+.spinner { height: 1.25rem; width: 1.25rem; border-radius: 999px; border: 2px solid rgba(148, 163, 184, 0.35); border-top-color: #14b8a6; animation: spin 0.9s linear infinite; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulseSoft { 0%,100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-color-scheme: dark) {
+  body.app-shell { background: #020617; color: #e2e8f0; }
+  body.app-shell .page-card, body.app-shell #app-sidebar, body.app-shell header, body.app-shell .glass-card { border-color: rgba(148, 163, 184, 0.18); background: rgba(15, 23, 42, 0.88); color: #e2e8f0; }
+  body.app-shell .doctor-avatar { background: linear-gradient(135deg, rgba(30, 64, 175, 0.7), rgba(8, 47, 73, 0.95)); color: #bfdbfe; }
+  body.app-shell .doctor-slot-pill { background: rgba(30, 64, 175, 0.22); color: #bfdbfe; }
+  body.app-shell .sidebar-brand-title { color: #ffffff; }
+  body.app-shell .doctor-directory-card { border-color: rgba(148, 163, 184, 0.18); background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(8, 47, 73, 0.9)); }
+  body.app-shell .doctor-directory-card .doctor-card-name,
+  body.app-shell .doctor-directory-card .doctor-card-fees-value { color: #ffffff; }
+  body.app-shell .doctor-directory-card .doctor-card-specialization { color: #67e8f9; }
+  body.app-shell .doctor-directory-card .doctor-card-meta { color: #cbd5e1; }
+  body.app-shell .doctor-directory-card .doctor-card-section-title,
+  body.app-shell .doctor-directory-card .doctor-card-fees-label { color: #94a3b8; }
+  body.app-shell .doctor-directory-card .doctor-card-fees { border: 1px solid rgba(148, 163, 184, 0.18); background: rgba(255, 255, 255, 0.06); }
+  body.app-shell .booking-modal-card { background: #0f172a; color: #e2e8f0; }
+  body.app-shell .booking-modal-close { color: #cbd5e1; }
+  body.app-shell .booking-modal-input { border-color: rgba(148, 163, 184, 0.24); background: rgba(15, 23, 42, 0.9); color: #e2e8f0; }
+}
