@@ -1,6 +1,6 @@
 import { createNavbar } from '../components/navbar.js';
 import { createSidebar } from '../components/sidebar.js';
-import { getFriendlyAuthError, signIn, signOut, signUp, signUpDoctor, requireAuth, requireDoctorAuth } from './auth.js';
+import { getCurrentUserProfile, getFriendlyAuthError, getHomePathForRole, signIn, signOut, signUp, signUpDoctor, requireAuth, requireDoctorAuth } from './auth.js';
 import { supabase } from './supabase.js';
 import { sendAppointmentEmail, sendOrderEmail, sendWelcomeEmail } from './email.js';
 import { ORDER_TIMELINE, calculateCartTotal, getSuggestedMedicines } from './cart.js';
@@ -57,7 +57,7 @@ const state = {
 document.addEventListener('DOMContentLoaded', async () => {
   try {
     if (page === 'auth' || page === 'doctor-auth') {
-      initAuthPage();
+      await initAuthPage();
       return;
     }
 
@@ -65,6 +65,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       ? await requireDoctorAuth()
       : await requireAuth();
     if (!state.user) return;
+
+    if (state.user.role === 'doctor' && page !== 'doctor-portal' && page !== 'doctor-slots') {
+      window.location.href = resolvePath('pages/doctor-portal.html');
+      return;
+    }
 
     renderShell();
     bindShellEvents();
@@ -75,7 +80,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
-function initAuthPage() {
+async function initAuthPage() {
+  const currentUser = await getCurrentUserProfile().catch(() => null);
+  if (currentUser) {
+    window.location.href = resolvePath(trimLeadingSlash(getHomePathForRole(currentUser.role)));
+    return;
+  }
+
   if (page === 'doctor-auth') {
     const tabs = document.querySelectorAll('[data-doctor-auth-tab]');
     const forms = document.querySelectorAll('[data-doctor-auth-form]');
@@ -147,7 +158,9 @@ function initAuthPage() {
       const formData = new FormData(event.currentTarget);
       const { profile } = await signIn({ email: String(formData.get('email')), password: String(formData.get('password')) });
       showToast(`Welcome back, ${profile.name}`);
-      setTimeout(() => { window.location.href = './dashboard.html'; }, 600);
+      setTimeout(() => {
+        window.location.href = trimLeadingSlash(getHomePathForRole(profile.role));
+      }, 600);
     });
   });
 
@@ -1364,5 +1377,7 @@ function resolvePath(target) {
   return window.location.pathname.includes('/pages/') ? `../${target}` : `./${target}`;
 }
 
-
+function trimLeadingSlash(value) {
+  return String(value || '').replace(/^\/+/, '');
+}
 

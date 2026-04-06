@@ -2,6 +2,10 @@ import { supabase, hasSupabase, initSupabase } from './supabase.js';
 import { generateSlots } from './doctor.js';
 
 const USER_KEY = 'pharmalink:user-profile';
+const PATIENT_HOME = '/dashboard.html';
+const DOCTOR_HOME = '/pages/doctor-portal.html';
+const PATIENT_LOGIN = '/login.html';
+const DOCTOR_LOGIN = '/pages/doctor-login.html';
 
 export function getFriendlyAuthError(error, context = 'login') {
   const message = String(error?.message || '').toLowerCase();
@@ -27,7 +31,10 @@ export async function signUp({ name, email, password }) {
   const { data, error } = await supabase.auth.signUp({
     email,
     password,
-    options: { data: { name, role: 'patient' } }
+    options: {
+      data: { name, role: 'patient' },
+      emailRedirectTo: getRedirectUrl(PATIENT_HOME)
+    }
   });
   if (error) {
     console.error('Supabase signUp error:', error);
@@ -62,7 +69,8 @@ export async function signUpDoctor({ name, email, password, specialization, city
         name,
         role: 'doctor',
         doctor_profile: doctorProfile
-      }
+      },
+      emailRedirectTo: getRedirectUrl(DOCTOR_HOME)
     }
   });
   if (error) {
@@ -167,12 +175,19 @@ export function requireDoctorAuth() {
       return null;
     }
     if (user.role !== 'doctor') {
-      await signOut();
-      window.location.href = resolvePath('pages/doctor-login.html');
+      window.location.href = resolvePath('dashboard.html');
       return null;
     }
     return user;
   });
+}
+
+export function getHomePathForRole(role = 'patient') {
+  return role === 'doctor' ? DOCTOR_HOME : PATIENT_HOME;
+}
+
+export function getLoginPathForRole(role = 'patient') {
+  return role === 'doctor' ? DOCTOR_LOGIN : PATIENT_LOGIN;
 }
 
 async function fetchUserProfile(user) {
@@ -366,6 +381,10 @@ function buildDoctorProfileMetadata({ specialization, city, fees, startTime, end
     slot_duration: Number.isFinite(normalizedDuration) && normalizedDuration > 0 ? normalizedDuration : 30,
     is_available: isAvailable !== false
   };
+}
+
+function getRedirectUrl(pathname) {
+  return new URL(pathname, window.location.origin).toString();
 }
 
 function resolvePath(target) {
