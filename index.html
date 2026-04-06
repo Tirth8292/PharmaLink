@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PharmaLink | Smart Healthcare Platform</title>
+  <meta name="description" content="PharmaLink helps patients book appointments, order medicines, and schedule lab tests in one premium healthcare workspace.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#f0fdfa', 100: '#ccfbf1', 500: '#14b8a6', 600: '#0d9488', 700: '#0f766e', 900: '#134e4a' },
+            ink: '#0f172a'
+          },
+          boxShadow: { glow: '0 20px 60px rgba(15, 23, 42, 0.12)' }
+        }
+      }
+    };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="bg-slate-950 text-white">
+  <main class="relative overflow-hidden">
+    <div class="absolute inset-0 hero-mesh opacity-90"></div>
+    <div class="relative mx-auto flex min-h-screen max-w-7xl flex-col px-6 py-8 lg:px-8">
+      <header class="flex items-center justify-between rounded-full border border-white/10 bg-white/5 px-5 py-3 backdrop-blur-xl">
+        <a href="./index.html" class="flex items-center gap-3">
+          <span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 to-cyan-400 text-lg font-bold text-slate-950">P</span>
+          <div>
+            <p class="text-lg font-semibold tracking-tight">PharmaLink</p>
+            <p class="text-xs text-slate-300">Connected care for modern patients</p>
+          </div>
+        </a>
+        <nav class="hidden items-center gap-8 text-sm text-slate-300 md:flex">
+          <a href="#services" class="transition hover:text-white">Services</a>
+          <a href="#features" class="transition hover:text-white">Features</a>
+          <a href="#how-it-works" class="transition hover:text-white">How it works</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="./login.html" class="rounded-full border border-white/15 px-4 py-2 text-sm font-medium text-white/90 transition hover:border-white/30 hover:bg-white/10">Login</a>
+          <a href="./login.html#signup" class="rounded-full bg-white px-4 py-2 text-sm font-semibold text-slate-900 transition hover:scale-[1.02]">Get Started</a>
+        </div>
+      </header>
+      <section class="grid flex-1 items-center gap-12 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+        <div class="space-y-8">
+          <div class="inline-flex items-center gap-2 rounded-full border border-emerald-400/30 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-100">
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-300 shadow-[0_0_18px_rgba(110,231,183,0.9)]"></span>
+            Healthcare, medicines, diagnostics, and appointments in one flow
+          </div>
+          <div class="space-y-5">
+            <h1 class="max-w-3xl text-5xl font-semibold leading-tight tracking-tight text-white md:text-6xl">One premium healthcare dashboard for every step of your journey.</h1>
+            <p class="max-w-2xl text-lg leading-8 text-slate-300">Book specialists, schedule lab tests, order prescriptions, and track every update with clean workflows designed for speed, trust, and peace of mind.</p>
+          </div>
+          <div class="flex flex-col gap-4 sm:flex-row">
+            <a href="./login.html#signup" class="rounded-2xl bg-gradient-to-r from-emerald-300 via-cyan-300 to-sky-300 px-6 py-4 text-center text-base font-semibold text-slate-950 shadow-glow transition duration-300 hover:-translate-y-1">Start With PharmaLink</a>
+            <a href="./dashboard.html" class="rounded-2xl border border-white/15 bg-white/5 px-6 py-4 text-center text-base font-medium text-white transition duration-300 hover:border-white/30 hover:bg-white/10">Explore Demo Dashboard</a>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl"><p class="text-3xl font-semibold">250+</p><p class="mt-1 text-sm text-slate-300">Verified doctors</p></div>
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl"><p class="text-3xl font-semibold">1h</p><p class="mt-1 text-sm text-slate-300">Average medicine dispatch</p></div>
+            <div class="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl"><p class="text-3xl font-semibold">24/7</p><p class="mt-1 text-sm text-slate-300">Continuous patient support</p></div>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="absolute -left-10 top-10 h-40 w-40 rounded-full bg-cyan-400/20 blur-3xl"></div>
+          <div class="absolute -right-10 bottom-12 h-48 w-48 rounded-full bg-emerald-400/20 blur-3xl"></div>
+          <div class="relative space-y-5 rounded-[2rem] border border-white/10 bg-white/10 p-5 shadow-glow backdrop-blur-2xl">
+            <div class="rounded-[1.6rem] bg-slate-900/80 p-5">
+              <div class="flex items-start justify-between gap-4">
+                <div><p class="text-sm text-slate-400">Today at PharmaLink</p><h2 class="mt-2 text-2xl font-semibold">Care board</h2></div>
+                <span class="rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-medium text-emerald-200">Live updates</span>
+              </div>
+              <div class="mt-6 grid gap-4">
+                <div class="rounded-3xl bg-white/5 p-4"><p class="text-sm text-slate-400">Upcoming appointment</p><div class="mt-3 flex items-center justify-between"><div><p class="font-medium">Dr. Emma Wilson</p><p class="text-sm text-slate-400">Cardiology • 04:30 PM</p></div><span class="rounded-full bg-sky-400/15 px-3 py-1 text-xs text-sky-100">Confirmed</span></div></div>
+                <div class="rounded-3xl bg-white/5 p-4"><p class="text-sm text-slate-400">Medicine basket</p><div class="mt-3 flex items-center justify-between"><div><p class="font-medium">4 items ready</p><p class="text-sm text-slate-400">Blood pressure, vitamins, skin care</p></div><span class="rounded-full bg-emerald-400/15 px-3 py-1 text-xs text-emerald-100">Fast checkout</span></div></div>
+                <div class="rounded-3xl bg-gradient-to-br from-brand-500/20 via-cyan-400/10 to-transparent p-4"><p class="text-sm text-slate-300">Lab diagnostics</p><p class="mt-3 text-xl font-semibold">Home sample collection available today</p><p class="mt-2 text-sm text-slate-300">Secure booking, digital reports, and proactive reminders.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="services" class="grid gap-6 pb-12 md:grid-cols-3">
+        <article class="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"><p class="text-sm text-emerald-200">Appointments</p><h3 class="mt-3 text-2xl font-semibold">Meet trusted doctors faster</h3><p class="mt-3 text-slate-300">Browse specialties, compare fees, and lock in available slots with instant confirmation emails.</p></article>
+        <article class="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"><p class="text-sm text-cyan-200">Medicines</p><h3 class="mt-3 text-2xl font-semibold">Order essentials with full visibility</h3><p class="mt-3 text-slate-300">Search your healthcare essentials, manage quantities, and place secure orders from a single cart.</p></article>
+        <article class="rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"><p class="text-sm text-sky-200">Diagnostics</p><h3 class="mt-3 text-2xl font-semibold">Book lab tests in a few taps</h3><p class="mt-3 text-slate-300">Select tests, track bookings, and manage results-ready visits through a calm, patient-first experience.</p></article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

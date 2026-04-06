@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | PharmaLink</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { brand: { 500: '#14b8a6', 600: '#0d9488' } } } } };
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body class="min-h-screen bg-slate-950 text-slate-50" data-page="auth">
+  <main class="relative min-h-screen overflow-hidden">
+    <div class="absolute inset-0 hero-mesh opacity-80"></div>
+    <div class="relative mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-6 py-10 lg:grid-cols-[1fr_460px] lg:px-8">
+      <section class="space-y-8">
+        <a href="./index.html" class="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-xl">
+          <span class="flex h-10 w-10 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-300 to-cyan-300 font-bold text-slate-950">P</span>
+          <span class="text-sm font-medium">Back to PharmaLink</span>
+        </a>
+        <div class="max-w-2xl space-y-5">
+          <p class="inline-flex rounded-full bg-emerald-400/10 px-4 py-2 text-sm text-emerald-100">Secure access for patients and families</p>
+          <h1 class="text-5xl font-semibold leading-tight tracking-tight">Healthcare access that feels calm, personal, and instant.</h1>
+          <p class="text-lg leading-8 text-slate-300">Create your account once and keep appointments, medicines, diagnostics, and order tracking together in one premium workspace.</p>
+        </div>
+      </section>
+      <section class="rounded-[2rem] border border-white/10 bg-white/10 p-6 shadow-2xl backdrop-blur-2xl">
+        <div class="mb-6 flex rounded-2xl bg-slate-900/60 p-1">
+          <button class="auth-tab active flex-1 rounded-2xl px-4 py-3 text-sm font-medium" data-auth-mode="login">Login</button>
+          <button class="auth-tab flex-1 rounded-2xl px-4 py-3 text-sm font-medium" data-auth-mode="signup">Sign Up</button>
+        </div>
+        <form id="login-form" class="space-y-4" data-auth-form="login">
+          <div><label class="mb-2 block text-sm text-slate-300" for="login-email">Email</label><input id="login-email" name="email" type="email" required class="form-input" placeholder="you@example.com"></div>
+          <div><label class="mb-2 block text-sm text-slate-300" for="login-password">Password</label><input id="login-password" name="password" type="password" required class="form-input" placeholder="Enter your password"></div>
+          <button type="submit" class="btn-primary w-full justify-center">Login</button>
+        </form>
+        <form id="signup-form" class="hidden space-y-4" data-auth-form="signup">
+          <div><label class="mb-2 block text-sm text-slate-300" for="signup-name">Full name</label><input id="signup-name" name="name" type="text" required class="form-input" placeholder="Aarav Sharma"></div>
+          <div><label class="mb-2 block text-sm text-slate-300" for="signup-email">Email</label><input id="signup-email" name="email" type="email" required class="form-input" placeholder="you@example.com"></div>
+          <div><label class="mb-2 block text-sm text-slate-300" for="signup-password">Password</label><input id="signup-password" name="password" type="password" required minlength="6" class="form-input" placeholder="Create a strong password"></div>
+          <button type="submit" class="btn-primary w-full justify-center">Create account</button>
+        </form>
+        <div class="mt-6 rounded-3xl border border-white/10 bg-slate-950/40 p-5"><p class="text-sm text-slate-400">Deployment note</p><p class="mt-2 text-sm leading-7 text-slate-300">Create a local `.env` from `.env.example` so Vite can inject your Supabase and EmailJS credentials on every page.</p></div>
+      </section>
+    </div>
+  </main>
+  <div id="toast-container" class="pointer-events-none fixed right-4 top-4 z-50 flex w-full max-w-sm flex-col gap-3"></div>
+  <script type="module" src="./js/app.js"></script>
+</body>
+</html>
